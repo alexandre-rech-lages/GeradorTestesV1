@@ -85,7 +85,7 @@ namespace GeradorTeste.WinApp
             // 
             this.disciplinaMenuItem.Name = "disciplinaMenuItem";
             this.disciplinaMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.disciplinaMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.disciplinaMenuItem.Size = new System.Drawing.Size(165, 22);
             this.disciplinaMenuItem.Text = "Disciplinas";
             this.disciplinaMenuItem.Click += new System.EventHandler(this.disciplinasMenuItem_Click);
             // 
@@ -93,7 +93,7 @@ namespace GeradorTeste.WinApp
             // 
             this.materiasMenuItem.Name = "materiasMenuItem";
             this.materiasMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.materiasMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.materiasMenuItem.Size = new System.Drawing.Size(165, 22);
             this.materiasMenuItem.Text = "Matérias";
             this.materiasMenuItem.Click += new System.EventHandler(this.materiasMenuItem_Click);
             // 
@@ -101,7 +101,7 @@ namespace GeradorTeste.WinApp
             // 
             this.questoesMenuItem.Name = "questoesMenuItem";
             this.questoesMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.questoesMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.questoesMenuItem.Size = new System.Drawing.Size(165, 22);
             this.questoesMenuItem.Text = "Questões";
             this.questoesMenuItem.Click += new System.EventHandler(this.questoesMenuItem_Click);
             // 
@@ -109,7 +109,7 @@ namespace GeradorTeste.WinApp
             // 
             this.testesMenuItem.Name = "testesMenuItem";
             this.testesMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.testesMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.testesMenuItem.Size = new System.Drawing.Size(165, 22);
             this.testesMenuItem.Text = "Testes";
             this.testesMenuItem.Click += new System.EventHandler(this.testesMenuItem_Click);
             // 
@@ -117,7 +117,7 @@ namespace GeradorTeste.WinApp
             // 
             this.configuracaoMenuItem.Name = "configuracaoMenuItem";
             this.configuracaoMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.configuracaoMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.configuracaoMenuItem.Size = new System.Drawing.Size(165, 22);
             this.configuracaoMenuItem.Text = "Configuração";
             this.configuracaoMenuItem.Click += new System.EventHandler(this.configMenuItem_Click);
             // 
@@ -153,7 +153,6 @@ namespace GeradorTeste.WinApp
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Padding = new System.Windows.Forms.Padding(5);
             this.btnInserir.Size = new System.Drawing.Size(38, 38);
-            this.btnInserir.Text = "Inserir";
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // btnEditar
@@ -165,7 +164,6 @@ namespace GeradorTeste.WinApp
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Padding = new System.Windows.Forms.Padding(5);
             this.btnEditar.Size = new System.Drawing.Size(38, 38);
-            this.btnEditar.Text = "Editar";
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnDuplicar
@@ -177,7 +175,6 @@ namespace GeradorTeste.WinApp
             this.btnDuplicar.Name = "btnDuplicar";
             this.btnDuplicar.Padding = new System.Windows.Forms.Padding(5);
             this.btnDuplicar.Size = new System.Drawing.Size(38, 38);
-            this.btnDuplicar.Text = "Duplicar";
             this.btnDuplicar.Click += new System.EventHandler(this.btnDuplicar_Click);
             // 
             // btnExcluir
@@ -189,7 +186,6 @@ namespace GeradorTeste.WinApp
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Padding = new System.Windows.Forms.Padding(5);
             this.btnExcluir.Size = new System.Drawing.Size(38, 38);
-            this.btnExcluir.Text = "Excluir";
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // toolStripSeparator2

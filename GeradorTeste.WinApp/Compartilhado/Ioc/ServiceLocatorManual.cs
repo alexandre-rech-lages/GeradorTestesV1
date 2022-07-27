@@ -1,5 +1,6 @@
 ﻿using eAgenda.Infra.Arquivos;
 using eAgenda.Infra.Arquivos.ModuloTeste;
+using GeradorTeste.WinApp.ModuloConfiguracao;
 using GeradorTeste.WinApp.ModuloDisciplina;
 using GeradorTeste.WinApp.ModuloMateria;
 using GeradorTeste.WinApp.ModuloQuestao;
@@ -43,9 +44,9 @@ namespace GeradorTeste.WinApp.Compartilhado.Ioc
         {
             var serializador = new SerializadorDadosEmJsonDotnet();
 
-            var contextoDados = new GeradorTesteJsonContext(serializador);                        
-          
-            var configuracao = new ConfigurationBuilder()
+            var contextoDados = new GeradorTesteJsonContext(serializador);
+
+            IConfiguration configuracao = new ConfigurationBuilder()
                  .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile("ConfiguracaoAplicacao.json")
                  .Build();
@@ -73,6 +74,8 @@ namespace GeradorTeste.WinApp.Compartilhado.Ioc
             var repositorioTeste = new RepositorioTesteOrm(contextoDadosOrm);
             var servicoTeste = new ServicoTeste(repositorioTeste, contextoDadosOrm);
             controladores.Add("ControladorTeste", new ControladorTeste(servicoTeste, servicoDisciplina));
+
+            controladores.Add("ControladorConfiguracao", new ControladorConfiguracao());
         }
      
     }

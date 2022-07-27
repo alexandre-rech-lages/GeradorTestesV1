@@ -58,10 +58,8 @@ namespace GeradorTeste.WinApp
 
         private void configMenuItem_Click(object sender, EventArgs e)
         {
-            var configuracaoControl = new ConfiguracaoControl();
-            panelRegistros.Controls.Add(configuracaoControl);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorConfiguracao>());
         }
-
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
