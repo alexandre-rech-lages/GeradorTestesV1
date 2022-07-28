@@ -11,12 +11,12 @@ namespace GeradorTestes.Aplicacao.ModuloQuestao
     public class ServicoQuestao
     {
         private IRepositorioQuestao repositorioQuestao;
-        private IContextoPersistencia contextoDados;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoQuestao(IRepositorioQuestao repositorioQuestao, IContextoPersistencia contextoDados)
+        public ServicoQuestao(IRepositorioQuestao repositorioQuestao, IContextoPersistencia contexto)
         {
             this.repositorioQuestao = repositorioQuestao;
-            this.contextoDados = contextoDados;
+            this.contextoPersistencia = contexto;
         }
 
         public Result<Questao> Inserir(Questao questao)
@@ -32,7 +32,7 @@ namespace GeradorTestes.Aplicacao.ModuloQuestao
             {
                 repositorioQuestao.Inserir(questao);
 
-                contextoDados.GravarDados();
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Questao {QuestaoId} inserida com sucesso", questao.Id);
 
@@ -40,6 +40,8 @@ namespace GeradorTestes.Aplicacao.ModuloQuestao
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar inserir a Questao";
 
                 Log.Logger.Error(ex, msgErro + " {QuestaoId}", questao.Id);
@@ -61,12 +63,14 @@ namespace GeradorTestes.Aplicacao.ModuloQuestao
             {
                 repositorioQuestao.Editar(questao);
 
-                contextoDados.GravarDados();
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Questao {QuestaoId} editada com sucesso", questao.Id);
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar editar a Questao";
 
                 Log.Logger.Error(ex, msgErro + " {QuestaoId}", questao.Id);
@@ -85,7 +89,7 @@ namespace GeradorTestes.Aplicacao.ModuloQuestao
             {
                 repositorioQuestao.Excluir(questao);
 
-                contextoDados.GravarDados();
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Questao {QuestaoId} excluída com sucesso", questao.Id);
 
@@ -93,6 +97,8 @@ namespace GeradorTestes.Aplicacao.ModuloQuestao
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar excluir a Questao";
 
                 Log.Logger.Error(ex, msgErro + " {QuestaoId}", questao.Id);

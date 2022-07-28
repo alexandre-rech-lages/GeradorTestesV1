@@ -41,6 +41,11 @@ namespace eAgenda.Infra.Arquivos
 
         public List<Questao> Questoes { get; set; }
 
+        public void DesfazerAlteracoes()
+        {
+            CarregarDados();
+        }
+
         public void GravarDados()
         {
             serializador.GravarDadosEmArquivo(this);

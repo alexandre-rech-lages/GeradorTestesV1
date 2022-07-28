@@ -11,12 +11,12 @@ namespace GeradorTestes.Aplicacao.ModuloTeste
     public class ServicoTeste
     {
         private IRepositorioTeste repositorioTeste;
-        private IContextoPersistencia contextoDados;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoTeste(IRepositorioTeste repositorioTeste, IContextoPersistencia contextoDados)
+        public ServicoTeste(IRepositorioTeste repositorioTeste, IContextoPersistencia contexto)
         {
             this.repositorioTeste = repositorioTeste;
-            this.contextoDados = contextoDados;
+            this.contextoPersistencia = contexto;
         }
 
         public Result<Teste> Inserir(Teste teste)
@@ -32,7 +32,7 @@ namespace GeradorTestes.Aplicacao.ModuloTeste
             {
                 repositorioTeste.Inserir(teste);
 
-                contextoDados.GravarDados();
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Teste {TesteId} inserido com sucesso", teste.Id);
 
@@ -40,6 +40,8 @@ namespace GeradorTestes.Aplicacao.ModuloTeste
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar inserir o Teste";
 
                 Log.Logger.Error(ex, msgErro + " {TesteId}", teste.Id);
@@ -56,7 +58,7 @@ namespace GeradorTestes.Aplicacao.ModuloTeste
             {
                 repositorioTeste.Excluir(teste);
 
-                contextoDados.GravarDados();
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Teste {TesteId} editada com sucesso", teste.Id);
 
@@ -64,6 +66,8 @@ namespace GeradorTestes.Aplicacao.ModuloTeste
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar excluir o Teste";
 
                 Log.Logger.Error(ex, msgErro + " {TesteId}", teste.Id);

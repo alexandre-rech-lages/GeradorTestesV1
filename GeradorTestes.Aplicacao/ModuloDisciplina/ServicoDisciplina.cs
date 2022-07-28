@@ -40,6 +40,8 @@ namespace GeradorTestes.Aplicacao.ModuloDisciplina
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar inserir a Disciplina";
 
                 Log.Logger.Error(ex, msgErro + " {DisciplinaId}", disciplina.Id);
@@ -67,6 +69,8 @@ namespace GeradorTestes.Aplicacao.ModuloDisciplina
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar editar a Disciplina";
 
                 Log.Logger.Error(ex, msgErro + " {DisciplinaId}", disciplina.Id);
@@ -93,6 +97,8 @@ namespace GeradorTestes.Aplicacao.ModuloDisciplina
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar excluir a Disciplina";
 
                 Log.Logger.Error(ex, msgErro + " {DisciplinaId}", disciplina.Id);
@@ -188,4 +194,6 @@ namespace GeradorTestes.Aplicacao.ModuloDisciplina
 
         #endregion
     }
+
+    
 }

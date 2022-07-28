@@ -11,12 +11,12 @@ namespace GeradorTestes.Aplicacao.ModuloMateria
     public class ServicoMateria
     {
         private IRepositorioMateria repositorioMateria;
-        private IContextoPersistencia contexto;
+        private IContextoPersistencia contextoPersistencia;
 
         public ServicoMateria(IRepositorioMateria repositorioMateria, IContextoPersistencia contexto)
         {
             this.repositorioMateria = repositorioMateria;
-            this.contexto = contexto;
+            this.contextoPersistencia = contexto;
         }
 
         public Result<Materia> Inserir(Materia materia)
@@ -32,7 +32,7 @@ namespace GeradorTestes.Aplicacao.ModuloMateria
             {
                 repositorioMateria.Inserir(materia);
 
-                contexto.GravarDados();
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Materia {MateriaId} inserida com sucesso", materia.Id);
 
@@ -40,6 +40,8 @@ namespace GeradorTestes.Aplicacao.ModuloMateria
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar inserir a Materia";
 
                 Log.Logger.Error(ex, msgErro + " {MateriaId}", materia.Id);
@@ -61,12 +63,14 @@ namespace GeradorTestes.Aplicacao.ModuloMateria
             {
                 repositorioMateria.Editar(materia);
 
-                contexto.GravarDados();
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Materia {MateriaId} editada com sucesso", materia.Id);
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar editar a Materia";
 
                 Log.Logger.Error(ex, msgErro + " {MateriaId}", materia.Id);
@@ -85,7 +89,7 @@ namespace GeradorTestes.Aplicacao.ModuloMateria
             {
                 repositorioMateria.Excluir(materia);
 
-                contexto.GravarDados();
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Materia {MateriaId} excluída com sucesso", materia.Id);
 
@@ -93,6 +97,8 @@ namespace GeradorTestes.Aplicacao.ModuloMateria
             }
             catch (Exception ex)
             {
+                contextoPersistencia.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar excluir a Materia";
 
                 Log.Logger.Error(ex, msgErro + " {MateriaId}", materia.Id);
