@@ -1,4 +1,5 @@
 ﻿using GeradorTestes.Dominio;
+using GeradorTestes.Infra.Configs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -10,9 +11,9 @@ namespace GeradorTestes.Infra.Orm
     {
         private string connectionString;
 
-        public GeradorTesteDbContext(string connectionString)
+        public GeradorTesteDbContext(ConnectionStrings connectionStrings)
         {
-            this.connectionString = connectionString;
+            this.connectionString = connectionStrings.SqlServer;
         }        
 
         public void GravarDados()

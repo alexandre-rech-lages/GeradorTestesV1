@@ -1,10 +1,18 @@
-﻿using System;
+﻿using GeradorTestes.Infra.Configs;
+using System;
 using System.Windows.Forms;
 
 namespace GeradorTeste.WinApp.ModuloConfiguracao
 {
     public class ControladorConfiguracao : ControladorBase
     {
+        private readonly ConfiguracaoAplicacaoGeradorTeste configuracao;
+
+        public ControladorConfiguracao(ConfiguracaoAplicacaoGeradorTeste configuracao)
+        {
+            this.configuracao = configuracao;
+        }
+
         public override void Editar()
         {
         }
@@ -24,7 +32,7 @@ namespace GeradorTeste.WinApp.ModuloConfiguracao
 
         public override UserControl ObtemListagem()
         {
-            return new ConfiguracaoControl();
+            return new ConfiguracaoControl(configuracao);
         }
     }
 }

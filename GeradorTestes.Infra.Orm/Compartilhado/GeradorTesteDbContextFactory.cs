@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-using System.IO;
+﻿using GeradorTestes.Infra.Configs;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace GeradorTestes.Infra.Orm.Compartilhado
 {
@@ -8,14 +7,9 @@ namespace GeradorTestes.Infra.Orm.Compartilhado
     {
         public GeradorTesteDbContext CreateDbContext(string[] args)
         {
-            var configuracao = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("ConfiguracaoAplicacao.json")
-             .Build();
+            var config = new ConfiguracaoAplicacaoGeradorTeste();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
-
-            return new GeradorTesteDbContext(connectionString);
+            return new GeradorTesteDbContext(config.ConnectionStrings);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using GeradorTestes.Dominio;
 using GeradorTestes.Dominio.ModuloDisciplina;
+using GeradorTestes.Infra.Configs;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,14 @@ namespace GeradorTestes.Aplicacao.ModuloDisciplina
     {
         private IRepositorioDisciplina repositorioDisciplina;
         private IContextoPersistencia contextoPersistencia;
+        private readonly ConfiguracaoAplicacaoGeradorTeste configuracao;
 
-        public ServicoDisciplina(IRepositorioDisciplina repositorioDisciplina, IContextoPersistencia contexto)
+        public ServicoDisciplina(IRepositorioDisciplina repositorioDisciplina, 
+            IContextoPersistencia contexto, ConfiguracaoAplicacaoGeradorTeste configuracao)
         {
             this.repositorioDisciplina = repositorioDisciplina;
             this.contextoPersistencia = contexto;
+            this.configuracao = configuracao;
         }
 
         public Result<Disciplina> Inserir(Disciplina disciplina)
@@ -29,7 +33,8 @@ namespace GeradorTestes.Aplicacao.ModuloDisciplina
                 return Result.Fail(resultado.Errors);
 
             try
-            {
+            {      
+                
                 repositorioDisciplina.Inserir(disciplina);
 
                 contextoPersistencia.GravarDados();
@@ -44,7 +49,7 @@ namespace GeradorTestes.Aplicacao.ModuloDisciplina
 
                 string msgErro = "Falha no sistema ao tentar inserir a Disciplina";
 
-                Log.Logger.Error(ex, msgErro + " {DisciplinaId}", disciplina.Id);
+                Log.Logger.Error(ex, msgErro + " {DisciplinaId} {VersaoSistema}", disciplina.Id, configuracao.VersaoSistema);
 
                 return Result.Fail(msgErro);
             }

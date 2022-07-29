@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using GeradorTestes.Dominio;
 using GeradorTestes.Dominio.ModuloMateria;
+using GeradorTestes.Infra.Configs;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,14 @@ namespace GeradorTestes.Aplicacao.ModuloMateria
     {
         private IRepositorioMateria repositorioMateria;
         private IContextoPersistencia contextoPersistencia;
+        private readonly ConfiguracaoAplicacaoGeradorTeste configuracao;
 
-        public ServicoMateria(IRepositorioMateria repositorioMateria, IContextoPersistencia contexto)
+        public ServicoMateria(IRepositorioMateria repositorioMateria, IContextoPersistencia contexto,
+            ConfiguracaoAplicacaoGeradorTeste configuracao)
         {
             this.repositorioMateria = repositorioMateria;
             this.contextoPersistencia = contexto;
+            this.configuracao = configuracao;
         }
 
         public Result<Materia> Inserir(Materia materia)

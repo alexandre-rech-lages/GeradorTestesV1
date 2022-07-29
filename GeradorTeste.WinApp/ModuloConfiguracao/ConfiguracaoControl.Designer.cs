@@ -34,10 +34,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDiretorioLogs = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1.SuspendLayout();
@@ -64,7 +64,7 @@
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.txtDiretorioLogs);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -109,24 +109,25 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(144, 23);
             this.textBox2.TabIndex = 1;
+            this.textBox2.Text = "Http://localhost:5431";
             // 
-            // textBox1
+            // txtDiretorioLogs
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDiretorioLogs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(134, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(326, 23);
-            this.textBox1.TabIndex = 0;
+            this.txtDiretorioLogs.Location = new System.Drawing.Point(134, 24);
+            this.txtDiretorioLogs.Name = "txtDiretorioLogs";
+            this.txtDiretorioLogs.Size = new System.Drawing.Size(326, 23);
+            this.txtDiretorioLogs.TabIndex = 0;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.textBox3);
+            this.tabPage2.Controls.Add(this.txtConnectionString);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(593, 349);
+            this.tabPage2.Size = new System.Drawing.Size(556, 329);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Configurações de Banco de Dados";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -140,14 +141,14 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Diretório de Logs:";
             // 
-            // textBox3
+            // txtConnectionString
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtConnectionString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(134, 24);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(444, 23);
-            this.textBox3.TabIndex = 3;
+            this.txtConnectionString.Location = new System.Drawing.Point(134, 24);
+            this.txtConnectionString.Name = "txtConnectionString";
+            this.txtConnectionString.Size = new System.Drawing.Size(416, 23);
+            this.txtConnectionString.TabIndex = 3;
             // 
             // button1
             // 
@@ -181,12 +182,12 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDiretorioLogs;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtConnectionString;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }

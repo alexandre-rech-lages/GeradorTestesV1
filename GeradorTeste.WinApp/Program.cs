@@ -19,7 +19,7 @@ namespace GeradorTeste.WinApp
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TelaPrincipalForm(new ServiceLocatorManual()));
+            Application.Run(new TelaPrincipalForm(new ServiceLocatorAutofac()));
         }
     }
 }

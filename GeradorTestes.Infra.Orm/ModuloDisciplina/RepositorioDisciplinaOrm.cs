@@ -1,4 +1,5 @@
-﻿using GeradorTestes.Dominio.ModuloDisciplina;
+﻿using GeradorTestes.Dominio;
+using GeradorTestes.Dominio.ModuloDisciplina;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,10 @@ namespace GeradorTestes.Infra.Orm.ModuloDisciplina
         private DbSet<Disciplina> disciplinas;
         private readonly GeradorTesteDbContext dbContext;
 
-        public RepositorioDisciplinaOrm(GeradorTesteDbContext dbContext)
+        public RepositorioDisciplinaOrm(IContextoPersistencia contextoPersistencia)
         {
+            dbContext = (GeradorTesteDbContext)contextoPersistencia;
             disciplinas = dbContext.Set<Disciplina>();
-            this.dbContext = dbContext;
         }
 
         public void Inserir(Disciplina novoRegistro)

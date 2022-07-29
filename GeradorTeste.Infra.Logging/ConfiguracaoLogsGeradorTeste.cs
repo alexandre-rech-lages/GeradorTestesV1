@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using GeradorTestes.Infra.Configs;
 using Serilog;
-using System.IO;
 
 namespace GeradorTeste.Infra.Logging
 {
@@ -8,15 +7,9 @@ namespace GeradorTeste.Infra.Logging
     {
         public static void ConfigurarEscritaLogs()
         {
-            var configuracao = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("ConfiguracaoAplicacao.json")
-                .Build();
+            var config = new ConfiguracaoAplicacaoGeradorTeste();
 
-            var diretorioSaida = configuracao
-                .GetSection("ConfiguracaoLogs")
-                .GetSection("DiretorioSaida")
-                .Value;
+            var diretorioSaida = config.ConfiguracaoLogs.DiretorioSaida;               
 
             Log.Logger = new LoggerConfiguration()
                    .MinimumLevel.Debug()  

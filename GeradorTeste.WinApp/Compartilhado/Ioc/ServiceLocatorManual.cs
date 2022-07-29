@@ -9,6 +9,7 @@ using GeradorTestes.Aplicacao.ModuloDisciplina;
 using GeradorTestes.Aplicacao.ModuloMateria;
 using GeradorTestes.Aplicacao.ModuloQuestao;
 using GeradorTestes.Aplicacao.ModuloTeste;
+using GeradorTestes.Infra.Configs;
 using GeradorTestes.Infra.Orm;
 using GeradorTestes.Infra.Orm.ModuloDisciplina;
 using GeradorTestes.Infra.Orm.ModuloMateria;
@@ -46,23 +47,18 @@ namespace GeradorTeste.WinApp.Compartilhado.Ioc
 
             var contextoDados = new GeradorTesteJsonContext(serializador);
 
-            IConfiguration configuracao = new ConfigurationBuilder()
-                 .SetBasePath(Directory.GetCurrentDirectory())
-                 .AddJsonFile("ConfiguracaoAplicacao.json")
-                 .Build();
+            var config = new ConfiguracaoAplicacaoGeradorTeste();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
-
-            var contextoDadosOrm = new GeradorTesteDbContext(connectionString);
+            var contextoDadosOrm = new GeradorTesteDbContext(config.ConnectionStrings);
 
             //var repositorioDisciplina = new RepositorioDisciplinaEmArquivo(contextoDados);
             var repositorioDisciplina = new RepositorioDisciplinaOrm(contextoDadosOrm);            
-            var servicoDisciplina = new ServicoDisciplina(repositorioDisciplina, contextoDadosOrm);
+            var servicoDisciplina = new ServicoDisciplina(repositorioDisciplina, contextoDadosOrm, config);
             controladores.Add("ControladorDisciplina", new ControladorDisciplina(servicoDisciplina));
 
             //var repositorioMateria = new RepositorioMateriaEmArquivo(contextoDados);
             var repositorioMateria = new RepositorioMateriaOrm(contextoDadosOrm);
-            var servicoMateria = new ServicoMateria(repositorioMateria, contextoDadosOrm);
+            var servicoMateria = new ServicoMateria(repositorioMateria, contextoDadosOrm, config);
             controladores.Add("ControladorMateria", new ControladorMateria(servicoMateria, servicoDisciplina));
 
             //var repositorioQuestao = new RepositorioQuestaoEmArquivo(contextoDados);
@@ -75,7 +71,7 @@ namespace GeradorTeste.WinApp.Compartilhado.Ioc
             var servicoTeste = new ServicoTeste(repositorioTeste, contextoDadosOrm);
             controladores.Add("ControladorTeste", new ControladorTeste(servicoTeste, servicoDisciplina));
 
-            controladores.Add("ControladorConfiguracao", new ControladorConfiguracao());
+            controladores.Add("ControladorConfiguracao", new ControladorConfiguracao(config));
         }
      
     }

@@ -1,4 +1,5 @@
-﻿using GeradorTestes.Dominio.ModuloMateria;
+﻿using GeradorTestes.Dominio;
+using GeradorTestes.Dominio.ModuloMateria;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,10 @@ namespace GeradorTestes.Infra.Orm.ModuloMateria
         private DbSet<Materia> materias;
         private readonly GeradorTesteDbContext dbContext;
 
-        public RepositorioMateriaOrm(GeradorTesteDbContext dbContext)
+        public RepositorioMateriaOrm(IContextoPersistencia contextoPersistencia)
         {
-            materias = dbContext.Set<Materia>();
-            this.dbContext = dbContext;
+            dbContext = (GeradorTesteDbContext)contextoPersistencia;
+            materias = dbContext.Set<Materia>();            
         }
 
         public void Inserir(Materia novoRegistro)

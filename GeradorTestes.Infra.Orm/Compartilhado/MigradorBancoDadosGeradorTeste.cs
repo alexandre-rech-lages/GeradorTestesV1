@@ -1,11 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using GeradorTestes.Infra.Configs;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeradorTestes.Infra.Orm.Compartilhado
 {
@@ -13,14 +8,9 @@ namespace GeradorTestes.Infra.Orm.Compartilhado
     {
         public static void AtualizarBancoDados()
         {
-            var configuracao = new ConfigurationBuilder()
-              .SetBasePath(Directory.GetCurrentDirectory())
-              .AddJsonFile("ConfiguracaoAplicacao.json")
-              .Build();
+            var config = new ConfiguracaoAplicacaoGeradorTeste();
 
-            var connectionString = configuracao.GetConnectionString("SqlServer");
-
-            var db = new GeradorTesteDbContext(connectionString);
+            var db = new GeradorTesteDbContext(config.ConnectionStrings);
 
             var migracoesPendentes = db.Database.GetPendingMigrations();
 

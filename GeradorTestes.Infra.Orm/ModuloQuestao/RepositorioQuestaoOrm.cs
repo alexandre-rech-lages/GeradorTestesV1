@@ -1,4 +1,5 @@
-﻿using GeradorTestes.Dominio.ModuloQuestao;
+﻿using GeradorTestes.Dominio;
+using GeradorTestes.Dominio.ModuloQuestao;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,10 @@ namespace GeradorTestes.Infra.Orm.ModuloQuestao
         private DbSet<Questao> questoes;
         private readonly GeradorTesteDbContext dbContext;
 
-        public RepositorioQuestaoOrm(GeradorTesteDbContext dbContext)
+        public RepositorioQuestaoOrm(IContextoPersistencia contextoPersistencia)
         {
+            dbContext = (GeradorTesteDbContext)contextoPersistencia;
             questoes = dbContext.Set<Questao>();
-            this.dbContext = dbContext;
         }
 
         public void Inserir(Questao novoRegistro)

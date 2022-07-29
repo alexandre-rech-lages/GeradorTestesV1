@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeradorTestes.Infra.Configs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace GeradorTeste.WinApp.ModuloConfiguracao
 {
     public partial class ConfiguracaoControl : UserControl
     {
-        public ConfiguracaoControl()
+        public ConfiguracaoControl(ConfiguracaoAplicacaoGeradorTeste configuracao)
         {
             InitializeComponent();
+
+            txtConnectionString.Text = configuracao.ConnectionStrings.SqlServer;
+            txtDiretorioLogs.Text = configuracao.ConfiguracaoLogs.DiretorioSaida;
         }
     }
 }
